@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 20
+  port: <%= ENV['DATABASE_PORT'] || 5432 %>
+  host: <%= ENV['DATABASE_HOST'] || 'localhost' %>
+  username: <%= ENV['DATABASE_USER'] || `whoami` %>
+  database: <%= ENV['DATABASE_NAME'] || 'sql_function_playground' %>
+
+development:
+  <<: *default
+  database: sql_function_playground_dev
+  pool: 20
+
+test:
+  <<: *default
+  database: bsql_function_playground_devooking_test
+  pool: 20
+
+production:
+  <<: *default
+  database: bsql_function_playground_devooking_prod
+  pool: 20
